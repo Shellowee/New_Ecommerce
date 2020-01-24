@@ -4,8 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class accueilController extends CI_Controller {
 
 
-	public function bienvenue()
+	public function bienvenue($page = 'ShelloweeAccueil')
 	{
-		$this->load->view('ShelloweeAccueil.php');
+		$data['title'] = ucfirst($page);
+
+		$this->load->view('templates/header');
+		$this->load->view($page, $data);
+		$this->load->view('templates/footer');
 	}
 }
