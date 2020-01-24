@@ -20,8 +20,11 @@ class Cart extends CI_Controller{
         $data['cartItems'] = $this->cart->contents();
         
         // Load the cart view
+		$this->load->view('templates/header');
         $this->load->view('cart/index', $data);
-    }
+		$this->load->view('templates/footer');
+
+	}
     
     function updateItemQty(){
         $update = 0;

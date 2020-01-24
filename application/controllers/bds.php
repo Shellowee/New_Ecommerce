@@ -20,26 +20,28 @@ class bds extends CI_Controller{
         $data['bds'] = $this->bd->getRows();
         
         // Load the bd list view
+		$this->load->view('templates/header');
         $this->load->view('bds/index', $data);
+		$this->load->view('templates/footer');
     }
     
-    function addToCart($proID){
+    function addToCart($cartData){
         
         // Fetch specific bd by id
-        $bd = $this->bd->getRows($proID);
+        $bd = $this->bd->getRows($cartData);
         
         // Add bd to the cart
-        $proID = array(
-            'id'    => $bd['id'],
+        $cartData = array(
+            'id'    => $cartData,
             'qty'    => 1,
-            'price'    => $bd['prix_public'],
-            'nom'    => $bd['titre'],
-            'image' => $bd['image']
+            'price'    => 50,
+            'name'    => $bd['titre'],
+            'options' => $bd['image']
         );
-        $this->cart->insert($proID);
+        $this->cart->insert($cartData);
         
         // Redirect to the cart page
-        redirect('cart/');
+        redirect('cart/index');
     }
     
 }

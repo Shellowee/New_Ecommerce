@@ -1,5 +1,5 @@
 <h1>Connexion</h1>
-<?php echo validation_errors() ?>
+
 <form  method="POST">
 	<div>
 		<label for="login">Login</label>
