@@ -1,0 +1,62 @@
+.bd_Card {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background: #efefef;
+	border-radius: 5px;
+	padding: 20px;
+	text-decoration: none;
+	height: 370px;
+}
+.bd_Card:hover {
+	text-decoration: none;
+}
+.bd_Card img {
+	height: 150px;
+	width: auto;
+	margin-bottom: 20px;
+}
+.bd_Card .bd_CardTitle {
+	height: 60px;
+	font-size: 18px;
+	text-decoration: none;
+	margin-bottom: 0;
+	color: black;
+}
+.bd_Card .bd_CardPrice {
+	font-size: 14px;
+	text-decoration: none;
+	color: gray;
+}
+.btn_bd_Card {
+	position: absolute;
+	top: 19.5rem;
+	left: 7rem;
+}
+
+
+/* Bédayyyy Details */
+.left_DetailsBD {
+	margin-top: 30px;
+	background: #efefef;
+	padding: 20px;
+}
+.right_DetailsBD {
+	padding: 20px;
+	margin-top: 30px;
+}
+.right_DetailsBD > p:first-child {
+	border-bottom: 1px solid #ececec;
+	padding-bottom: 10px;
+	font-weight: 700;
+	font-size: 20px;
+}
+.right_DetailsBD > div {
+	border: 2px solid #efefef;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+.right_DetailsBD > div p {
+	margin-bottom: 0;
+}

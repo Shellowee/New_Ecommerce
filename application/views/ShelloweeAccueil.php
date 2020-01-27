@@ -5,7 +5,7 @@
 </style>
 
 <h1 style="text-align:  center; font-family: Georgia;">
-	Bienvenue sur Shellowee BD!
+	BIENVENUE SUR BD FOLIZZ !
 </h1>
 <br/>
 <br/>

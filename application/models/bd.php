@@ -5,11 +5,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Bd extends CI_Model{
     
         function __construct() {
-        
+
+        parent::__construct();
         $this->bdTable = 'bd';
         $this->custTable = 'customers';
         $this->ordTable = 'orders';
         $this->ordItemsTable = 'order_items';
+        $this->genreTable = 'genre';
+        $this->auteurTable = 'auteur';
+        $this->auteur_bdTable= 'auteur_bd';
+        $this->editeurTable= 'editeur';
     }
     
     /*
@@ -33,6 +38,66 @@ class Bd extends CI_Model{
         // Return fetched data
         return !empty($result)?$result:false;
     }
+
+    public function getBdsByCategory($category){
+    	$this->db->select('*');
+		$this->db->from($this->bdTable . ' as b');
+		$this->db->join($this->genreTable . ' as g', 'g.id = b.genre_id');
+		$this->db->where('g.nom', $category);
+		$query = $this->db->get();
+		$result = $query->result_array();
+
+		// Return fetched data
+		return !empty($result)?$result:false;
+	}
+
+	public function getCategoryOfABd($id){
+    	$this->db->select('*');
+    	$this->db->from($this->genreTable . ' as g');
+    	$this->db->join($this->bdTable . ' as b', 'g.id = b.genre_id');
+		$this->db->where('b.id', $id);
+		$query = $this->db->get();
+		$result = $query->row_array();
+
+		// Return fetched data
+		return !empty($result)?$result:false;
+	}
+
+	public function getAuteursOfABd($id){
+		$this->db->select('*');
+		$this->db->from($this->auteurTable . ' as a');
+		$this->db->join($this->auteur_bdTable . ' as j', 'a.id = j.auteur_id');
+		$this->db->join($this->bdTable . ' as b', 'b.id = j.bd_id');
+		$this->db->where('b.id', $id);
+		$query = $this->db->get();
+		$result = $query->result_array();
+
+		// Return fetched data
+		return !empty($result)?$result:false;
+	}
+
+	public function getEditeurOfABd($id){
+		$this->db->select('*');
+		$this->db->from($this->editeurTable . ' as e');
+		$this->db->join($this->bdTable . ' as b', 'e.id = b.editeur_id');
+		$this->db->where('b.id', $id);
+		$query = $this->db->get();
+		$result = $query->row_array();
+
+		// Return fetched data
+		return !empty($result)?$result:false;
+	}
+
+	public function get_countBds() {
+    	return $this->db->count_all($this->bdTable);
+	}
+
+	public function get_bdsWithPagination($limit, $start) {
+		$this->db->limit($limit, $start);
+		$query = $this->db->get($this->bdTable);
+
+		return $query->result();
+	}
     
     /*
      * Fetch order data from the database
