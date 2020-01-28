@@ -15,6 +15,7 @@ class Bd extends CI_Model{
         $this->auteurTable = 'auteur';
         $this->auteur_bdTable= 'auteur_bd';
         $this->editeurTable= 'editeur';
+        $this->ciSessionTable= 'ci_sessions';
     }
     
     /*
@@ -38,6 +39,12 @@ class Bd extends CI_Model{
         // Return fetched data
         return !empty($result)?$result:false;
     }
+
+    public function getSession(){
+    	$this->db->select('*');
+		$this->db->from($this->ciSessionTable);
+		$this->db->limit(1);
+	}
 
     public function getBdsByCategory($category){
     	$this->db->select('*');

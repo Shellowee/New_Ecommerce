@@ -15,10 +15,13 @@ class Cart extends CI_Controller{
     
     function index(){
         $data = array();
+        $session_bd = $this->bd->getSession();
         
         // Retrieve cart data from the session
         $data['cartItems'] = $this->cart->contents();
-        
+        $result = $this->cart->total_items();
+        log_message('error','dans mon cart: '.$result);
+
         // Load the cart view
 		$this->load->view('templates/header');
         $this->load->view('cart/index', $data);

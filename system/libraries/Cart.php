@@ -481,8 +481,8 @@ class CI_Cart {
 
 
 		// Remove these so they don't create a problem when showing the cart table
-		//unset($cart['total_items']);
-		//unset($cart['cart_total']);
+		unset($cart['total_items']);
+		unset($cart['cart_total']);
 
 		return $cart;
 	}

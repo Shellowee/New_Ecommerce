@@ -40,20 +40,23 @@ class bds extends CI_Controller{
     }
     
     function addToCart($cartData){
-        
+
         // Fetch specific bd by id
         $bd = $this->bd->getRows($cartData);
-        
+        log_message('error','voila ce que remonte la bdd: '.$bd['id']);
+
         // Add bd to the cart
         $cartData = array(
-            'id'    => $cartData,
+            'id'    => $bd['id'],
             'qty'    => 1,
-            'price'    => 50,
+            'price'    => $bd['prix_public'],
             'name'    => $bd['titre'],
-            'options' => $bd['image']
+            'options' => array('image' => $bd['image'])
         );
         $this->cart->insert($cartData);
-        
+        $cart=$this->cart->total_items();
+		log_message('error','voila ce quon a persisté: '.$cart);
+
         // Redirect to the cart page
         redirect('cart/index');
     }

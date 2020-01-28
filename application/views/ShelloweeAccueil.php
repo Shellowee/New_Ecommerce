@@ -63,7 +63,6 @@
 <br>
 <br>
 <br>
-<footer><p style="text-align: center;">Site élaboré par Estelle & Pierre - CDA Afpa Champs-Sur-Marne 2020</p></footer>
 
 
 

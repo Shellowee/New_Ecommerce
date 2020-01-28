@@ -3,14 +3,14 @@
 	<div class="col-3 left_DetailsBD">
 		<p><?php echo $detailBd['titre']; ?></p>
 		<img src="<?php echo base_url('uploads/product_images/'.$detailBd['ref']).'.jpg'; ?>" onerror="this.src='<?php echo base_url('uploads/product_images/defaut.jpg'); ?>'"/>
-		<p>Prix : <?php echo $detailBd['prix_public']; ?>$</p>
+		<p><h2><?php echo $detailBd['prix_public']; ?>$</h2></p>
 		<p>Genre : <?php echo $genre['nom']; ?></p>
 	</div>
 
 	<div class="col-9 right_DetailsBD">
 		<p>DECOUVRIR LA BD...</p>
 		<div>
-			<p><?php echo $detailBd['titre']; ?></p>
+			<p><h3><?php echo $detailBd['titre']; ?></h3></p>
 			<p>De
 				<?php foreach($auteurs as $auteur){ ?>
 					<?php echo $auteur['nom']; ?>&nbsp;

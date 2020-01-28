@@ -60,3 +60,11 @@
 .right_DetailsBD > div p {
 	margin-bottom: 0;
 }
+/*Footer et Header*/
+#sticky-footer {
+	flex-shrink: none;
+}
+.header-color{
+	background-color: #343a40!important;
+}
+
