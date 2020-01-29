@@ -1,3 +1,8 @@
+/* MINIMAL */
+.dflex {display: flex;}
+.jcfe {justify-content: flex-end}
+
+/* GENERAL */
 .bd_Card {
 	display: flex;
 	align-items: center;
@@ -66,5 +71,10 @@
 }
 .header-color{
 	background-color: #343a40!important;
+}
+/*pagination*/
+.pagination-custom{
+	display: flex;
+	justify-content: flex-end;
 }
 

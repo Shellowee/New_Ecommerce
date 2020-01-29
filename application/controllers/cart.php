@@ -15,7 +15,7 @@ class Cart extends CI_Controller{
     
     function index(){
         $data = array();
-        $session_bd = $this->bd->getSession();
+        $this->bd->getSession();
         
         // Retrieve cart data from the session
         $data['cartItems'] = $this->cart->contents();

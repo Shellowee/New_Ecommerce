@@ -4,6 +4,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('css/custom.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/style.css'); ?>">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		  rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark header-color">
@@ -21,6 +23,13 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo base_url('/cart/index'); ?>">Panier</a>
+			</li>
+			<li class="nav-item">
+				<a href="<?php echo base_url('cart/index'); ?>" class="cart-link" title="View Cart">
+					<i class="material-icons">
+						shopping_cart
+					</i><span>(<?php echo $this->cart->total_items(); ?>)</span>
+				</a>
 			</li>
 		</ul>
 	</div>

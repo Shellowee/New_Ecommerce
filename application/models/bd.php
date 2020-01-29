@@ -40,23 +40,21 @@ class Bd extends CI_Model{
         return !empty($result)?$result:false;
     }
 
+	public function getTotalBdsByCategory($category){
+    	$bdList = $this->db->select('*')
+			->from($this->bdTable . ' as b')
+			->join($this->genreTable . ' as g', 'g.id = b.genre_id')
+			->where('g.nom', $category)
+			->get();
+    	return $bdList->num_rows();
+	}
+
     public function getSession(){
     	$this->db->select('*');
 		$this->db->from($this->ciSessionTable);
 		$this->db->limit(1);
 	}
 
-    public function getBdsByCategory($category){
-    	$this->db->select('*');
-		$this->db->from($this->bdTable . ' as b');
-		$this->db->join($this->genreTable . ' as g', 'g.id = b.genre_id');
-		$this->db->where('g.nom', $category);
-		$query = $this->db->get();
-		$result = $query->result_array();
-
-		// Return fetched data
-		return !empty($result)?$result:false;
-	}
 
 	public function getCategoryOfABd($id){
     	$this->db->select('*');
@@ -104,6 +102,16 @@ class Bd extends CI_Model{
 		$query = $this->db->get($this->bdTable);
 
 		return $query->result();
+	}
+
+	public function get_bdsWithPaginationByCategory($limit, $start, $categorie) {
+		$this->db->limit($limit, $start);
+		$this->db->from($this->bdTable . ' as b');
+		$this->db->join($this->genreTable . ' as g', 'g.id = b.genre_id');
+		$this->db->where('g.nom', $categorie);
+		$query = $this->db->get();
+
+		return $query->result_array();
 	}
     
     /*
