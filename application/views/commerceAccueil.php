@@ -4,8 +4,8 @@
 	}
 </style>
 
-<h1 style="text-align:  center; font-family: Georgia;">
-	BIENVENUE SUR BD FOLIZZ !
+<h1 class="pt-3" style="text-align: center">
+	Bienvenue sur l'aBDcédaire !
 </h1>
 <br/>
 <br/>
@@ -43,10 +43,10 @@
 		</a>
 	</div>
 	<div class="col mb-4">
-		<a class="card .h-100 height-card" href="<?php echo base_url('bds/EROTIQUE'); ?>">
-			<img src="<?php echo base_url('uploads/category_images/1200-L-pour-la-peau-de-sandrine-saint-marc-et-deloupy.jpg'); ?>" class="card-img-top" alt="...">
+		<a class="card .h-100 height-card" href="<?php echo base_url('bds/JEUNESSE'); ?>">
+			<img src="<?php echo base_url('uploads/category_images/25216.jpeg'); ?>" class="card-img-top" alt="...">
 			<div class="card-body">
-				<h5 class="card-title">Erotique</h5>
+				<h5 class="card-title">Jeunesse</h5>
 			</div>
 		</a>
 	</div>

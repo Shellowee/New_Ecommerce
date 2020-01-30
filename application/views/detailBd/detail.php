@@ -21,6 +21,7 @@
 			<span class="label label-primary"><?php echo $detailBd['ref_fournisseur']; ?></span></p>
 		</div>
 		<p><?php echo $detailBd['resume']; ?></p>
+		<button onclick="history.go(-1);">< Retour à la liste </button>
 	</div>
 
 </div>

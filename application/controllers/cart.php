@@ -8,6 +8,7 @@ class Cart extends CI_Controller{
         
         // Load cart library
         $this->load->library('cart');
+        $this->load->library('session');
         
         // Load product model
         $this->load->model('bd');
@@ -48,13 +49,20 @@ class Cart extends CI_Controller{
         // Return response
         echo $update?'ok':'err';
     }
-    
+
     function removeItem($rowid){
         // Remove item from cart
         $remove = $this->cart->remove($rowid);
         
         // Redirect to the cart page
-        redirect('cart/');
+        redirect('cart/index');
     }
+
+    function endSession() {
+
+		$this->session->sess_destroy();
+		redirect('cart/index');
+
+	}
     
 }

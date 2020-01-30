@@ -21,7 +21,7 @@ class detailBd extends CI_Controller
 		$data['genre'] = $this->bd->getCategoryOfABd($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('bds/bd/detail', $data);
+		$this->load->view('detailBd/detail', $data);
 		$this->load->view('templates/footer');
 	}
 

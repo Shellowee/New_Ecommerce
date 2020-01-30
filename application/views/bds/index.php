@@ -14,19 +14,29 @@
     <div class="row">
     <?php if(!empty($bds)){ foreach($bds as $row){ ?>
         <div class="col-sm-4 col-lg-4 col-md-4 pb-3">
-			<a class="bd_Card" href="<?php echo base_url('bds/bd/'.$row->id); ?>">
+			<a class="bd_Card" href="<?php echo base_url('detailBd/'.$row->id); ?>">
 				<img src="<?php echo base_url('uploads/product_images/'.$row->ref).'.jpg'; ?>" onerror="this.src='<?php echo base_url('uploads/product_images/defaut.jpg'); ?>'"/>
 				<p class="bd_CardTitle"><?php echo $row->titre; ?></p>
-				<p class="bd_CardPrice">$<?php echo $row->prix_public; ?> USD</p>
+				<p class="bd_CardPrice"><?php
+					if(isset($row->prix_public)){
+						echo $row->prix_public;
+					}else{
+						echo '--';
+					}?>€</p>
 			</a>
 			<a href="<?php echo base_url('add/'.$row->id); ?>" class="btn btn-info btn_bd_Card">Ajouter au panier</a>
         </div>
     <?php } }else if (!empty($bdsWithCat)){ foreach($bdsWithCat as $row){ ?>
 		<div class="col-sm-4 col-lg-4 col-md-4 pb-3">
-			<a class="bd_Card" href="<?php echo base_url('bds/bd/'.$row['id']); ?>">
+			<a class="bd_Card" href="<?php echo base_url('detailBd/'.$row['id']); ?>">
 				<img src="<?php echo base_url('uploads/product_images/'.$row['ref']).'.jpg'; ?>" onerror="this.src='<?php echo base_url('uploads/product_images/defaut.jpg'); ?>'"/>
 				<p class="bd_CardTitle"><?php echo $row['titre']; ?></p>
-				<p class="bd_CardPrice">$<?php echo $row['prix_public']; ?> USD</p>
+				<p class="bd_CardPrice"><?php
+					if(isset($row['prix_public'])){
+						echo $row['prix_public'];
+					}else{
+						echo '--';
+					}?>€</p>
 			</a>
 			<a href="<?php echo base_url('add/'.$row['id']); ?>" class="btn btn-info btn_bd_Card">Ajouter au panier</a>
 		</div>

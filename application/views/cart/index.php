@@ -23,16 +23,23 @@
 			<th width="15%">Prix</th>
 			<th width="13%">Quantité</th>
 			<th width="20%">Sous-total</th>
-			<th width="12%"></th>
+			<th width="12%">Actions</th>
 		</tr>
 		</thead>
 		<tbody>
 		<?php if($this->cart->total_items() > 0){ foreach($cartItems as $item){    ?>
 			<tr>
 				<td><?php echo $item['name']; ?></td>
-				<td><?php echo '$'.$item["price"].' USD'; ?></td>
-				<td><?php echo $item["qty"]; ?></td>
-				<td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
+				<td><?php echo $item["price"].'€'; ?></td>
+				<td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>"
+						   onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+				<td><?php echo $item["subtotal"].'€'; ?></td>
+				<td>
+					<a href="<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>" class="btn btn-danger"
+					   onclick="return confirm('Etes vous sûr de vouloir supprimer cet article de votre panier?')"><i class="material-icons">
+							delete
+						</i></a>
+				</td>
 			</tr>
 		<?php } }else{ ?>
 		<tr><td colspan="6"><p>Votre panier est vide.....</p></td>
@@ -40,10 +47,27 @@
 		</tbody>
 		<tfoot>
 		<tr>
-			<td><a href="<?php echo base_url('bds/index'); ?>" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continuer les achats</a></td>
-			<td colspan="3"></td>
+			<td><a href="<?php echo base_url('bds/index'); ?>" class="btn btn-warning"><i class="material-icons">
+						add_shopping_cart
+					</i> Continuer les achats</a></td>
+			<?php if($this->cart->total_items() > 0) {?>
+			<td>
+				<a href="<?php echo base_url('checkout/index'); ?>" class="btn btn-success btn-block">
+					<i class="material-icons">
+						credit_card
+					</i> Commander</a>
+			</td>
+			<?php } ?>
+			<td colspan="1"></td>
 			<?php if($this->cart->total_items() > 0){ ?>
-				<td class="text-left">Grand Total: <b><?php echo '$'.$this->cart->total().' USD'; ?></b></td>
+				<td class="text-left">Grand Total: <b><?php echo $this->cart->total().'€'; ?></b></td>
+				<td>
+					<a href="<?php echo base_url('cart/endSession'); ?>" class="btn btn-secondary btn-block"
+					   onclick="return confirm('Etes vous sûr de vouloir vider votre panier?')">
+						<i class="material-icons">
+							remove_shopping_cart
+						</i></a>
+				</td>
 			<?php } ?>
 		</tr>
 		</tfoot>

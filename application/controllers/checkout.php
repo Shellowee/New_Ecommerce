@@ -14,7 +14,7 @@ class Checkout extends CI_Controller{
         $this->load->library('cart');
         
         // Load product model
-        $this->load->model('bd');
+        $this->load->model('order');
         
         $this->controller = 'checkout';
     }
@@ -22,7 +22,7 @@ class Checkout extends CI_Controller{
     function index(){
         // Redirect if the cart is empty
         if($this->cart->total_items() <= 0){
-            redirect('bds/');
+            redirect('bds/index');
         }
         
         $custData = $data = array();
@@ -47,7 +47,7 @@ class Checkout extends CI_Controller{
             // Validate submitted form data
             if($this->form_validation->run() == true){
                 // Insert customer data
-                $insert = $this->bd->insertCustomer($custData);
+                $insert = $this->order->insertCustomer($custData);
                 
                 // Check customer data insert status
                 if($insert){
@@ -74,7 +74,9 @@ class Checkout extends CI_Controller{
         $data['cartItems'] = $this->cart->contents();
         
         // Pass bds data to the view
+		$this->load->view('templates/header');
         $this->load->view($this->controller.'/index', $data);
+		$this->load->view('templates/footer');
     }
     
     function placeOrder($custID){
@@ -83,7 +85,7 @@ class Checkout extends CI_Controller{
             'customer_id' => $custID,
             'grand_total' => $this->cart->total()
         );
-        $insertOrder = $this->bd->insertOrder($ordData);
+        $insertOrder = $this->order->insertOrder($ordData);
         
         if($insertOrder){
             // Retrieve cart data from the session
@@ -102,7 +104,7 @@ class Checkout extends CI_Controller{
             
             if(!empty($ordItemData)){
                 // Insert order items
-                $insertOrderItems = $this->product->insertOrderItems($ordItemData);
+                $insertOrderItems = $this->order->insertOrderItems($ordItemData);
                 
                 if($insertOrderItems){
                     // Remove items from the cart
@@ -118,10 +120,12 @@ class Checkout extends CI_Controller{
     
     function orderSuccess($ordID){
         // Fetch order data from the database
-        $data['order'] = $this->bd->getOrder($ordID);
+        $data['order'] = $this->order->getOrder($ordID);
         
         // Load order details view
+		$this->load->view('templates/header');
         $this->load->view($this->controller.'/order-success', $data);
+        $this->load->view('templates/footer');
     }
     
 }

@@ -23,7 +23,6 @@ class bds extends CI_Controller{
 
 		//configuration de la pagination du framework personnalisée avec bootstrap
 		$config["per_page"] = 9;
-		$config["uri_segment"] = 2;
 		$config["full_tag_open"] = "<ul class='pagination pagination-sm'>";
 		$config["full_tag_close"] = "</ul>";
 		$config["num_tag_open"] = "<li class='page-item'>";
@@ -44,10 +43,8 @@ class bds extends CI_Controller{
 
 		$data['categorie'] = $categorie;
 
-		//Cas de l'accès à la liste des BD triées par genre
-		if($categorie === NULL || !$this->categorie->isACategory($categorie)){
-			log_message('error','pas une categorie');
-			log_message('error','categorie: '.$categorie);
+		//Cas de l'accès à la liste complète des BD
+		if(is_null($categorie)  || !$this->categorie->isACategory($categorie)){
 			$config["base_url"] = base_url() . "bds/index";
 			$config["total_rows"] = $this->bd->get_countBds();
 			$config["uri_segment"] = 3;
@@ -59,10 +56,8 @@ class bds extends CI_Controller{
 			$data['bds'] = $this->bd->get_bdsWithPagination($config["per_page"], $page);
 			$data["links"] = $this->pagination->create_links();
 
-		//cas de l'accès à la liste complète des BD
+		//cas de l'accès à la liste des BD triées par genre
 		} else {
-			log_message('error','a une categorie !');
-			log_message('error','categorie: '.$categorie);
 			$config["base_url"] = base_url() . "bds/" . $categorie;
 			$config["total_rows"] = $this->bd->getTotalBdsByCategory($categorie);
 			$config["uri_segment"] = 3;
@@ -80,7 +75,8 @@ class bds extends CI_Controller{
         $this->load->view('bds/index', $data);
 		$this->load->view('templates/footer');
     }
-    
+
+
     function addToCart($cartData){
 
         // Fetch specific bd by id
