@@ -479,6 +479,7 @@ class CI_Cart {
 		// do we want the newest first?
 		$cart = ($newest_first) ? array_reverse($this->_cart_contents) : $this->_cart_contents;
 
+
 		// Remove these so they don't create a problem when showing the cart table
 		unset($cart['total_items']);
 		unset($cart['cart_total']);

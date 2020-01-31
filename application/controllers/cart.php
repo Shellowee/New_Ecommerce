@@ -8,6 +8,7 @@ class Cart extends CI_Controller{
         
         // Load cart library
         $this->load->library('cart');
+        $this->load->library('session');
         
         // Load product model
         $this->load->model('bd');
@@ -15,13 +16,19 @@ class Cart extends CI_Controller{
     
     function index(){
         $data = array();
+        $this->bd->getSession();
         
         // Retrieve cart data from the session
         $data['cartItems'] = $this->cart->contents();
-        
+        $result = $this->cart->total_items();
+        log_message('error','dans mon cart: '.$result);
+
         // Load the cart view
+		$this->load->view('templates/header');
         $this->load->view('cart/index', $data);
-    }
+		$this->load->view('templates/footer');
+
+	}
     
     function updateItemQty(){
         $update = 0;
@@ -42,13 +49,20 @@ class Cart extends CI_Controller{
         // Return response
         echo $update?'ok':'err';
     }
-    
+
     function removeItem($rowid){
         // Remove item from cart
         $remove = $this->cart->remove($rowid);
         
         // Redirect to the cart page
-        redirect('cart/');
+        redirect('cart/index');
     }
+
+    function endSession() {
+
+		$this->session->sess_destroy();
+		redirect('cart/index');
+
+	}
     
 }
